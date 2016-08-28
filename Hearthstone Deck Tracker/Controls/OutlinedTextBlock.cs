@@ -175,8 +175,9 @@ namespace Hearthstone_Deck_Tracker
 			// the Math.Max call is to ensure we don't hit zero, which will cause MaxTextHeight to throw
 			var maxWidth = Math.Min(3579139, Math.Max(0.0001d, availableSize.Width));
 			var ratio = maxWidth / _formattedText.Width;
+			var newFontSize = (int)(FontSize * ratio);
 			if(ratio < 1 && (TextWrapping == TextWrapping.NoWrap || ratio > 0.8))
-				_formattedText.SetFontSize((int)(FontSize * ratio));
+				_formattedText.SetFontSize(Math.max(newFontSize, 1));
 			_formattedText.MaxTextWidth = maxWidth;
 			_formattedText.MaxTextHeight = Math.Max(0.0001d, availableSize.Height);
 
